@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: frontdesk-hotel-demo
+    runtime: node
+    plan: free
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: '~22.22.0'
+      - key: HOTEL_HOST
+        value: 0.0.0.0
+      - key: HOTEL_DB
+        value: ':memory:'
+      - key: HOTEL_SEED
+        value: '1'

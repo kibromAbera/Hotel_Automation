@@ -152,5 +152,6 @@ export async function handleRequest(req, res) {
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const server = createServer(handleRequest);
-  server.listen(Number(process.env.PORT || 3001), '127.0.0.1', () => console.log(`Frontdesk listening at http://127.0.0.1:${server.address().port}`));
+  const host = process.env.HOTEL_HOST || '127.0.0.1';
+  server.listen(Number(process.env.PORT || 3001), host, () => console.log(`Frontdesk listening on ${host}:${server.address().port}`));
 }
